@@ -1,0 +1,19 @@
+version: '3.4'
+services:
+#   api: 
+#     build:
+#       context: ./api
+#     restart: on-failure
+#     env_file: .env
+  db:
+    build:
+        context: ./db
+    ports:
+        - "${DB_PORT1}:${DB_PORT2}"
+    volumes:
+        - dbData:/var/lib/postgresql/data
+    env_file: .env
+volumes:
+  dbData:
+    labels:
+      persistent: 'true'
