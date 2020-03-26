@@ -12,6 +12,6 @@ This is a repository for training purposes
 
 # The endpoints you have to create are the following:
     1. '/api/getMaxFixedAcidicity'
-    1. '/api/getNeutralWines' -> neutral is the ph range between 6-8
-    1. '/api/getTopAlcoholWines' -> 10 most alcoholic wines
-    1. '/api/getBottomDensityWines -> 10 least density wines
+    2. '/api/getNeutralWines' -> neutral is the ph range between 6-8
+    3. '/api/getTopAlcoholWines' -> 10 most alcoholic wines
+    4. '/api/getBottomDensityWines -> 10 least density wines
