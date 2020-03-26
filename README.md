@@ -1,4 +1,4 @@
-# wine-quality-api
+# Wine-quality-api
 This is a repository for training purposes
 
 ## Exercise
@@ -10,7 +10,7 @@ This is a repository for training purposes
 * Create an api with the flask microframework
 * Connect with postgres with the following URI ```postgresql://postgres:postgres@localhost:5430/wine```
 
-# The endpoints you have to create are the following:
+## The endpoints you have to create are the following:
     1. '/api/getMaxFixedAcidicity'
     2. '/api/getNeutralWines' -> neutral is the ph range between 6-8
     3. '/api/getTopAlcoholWines' -> 10 most alcoholic wines
