@@ -15,3 +15,9 @@ This is a repository for training purposes
     2. '/api/getNeutralWines' -> neutral is the ph range between 6-8
     3. '/api/getTopAlcoholWines' -> 10 most alcoholic wines
     4. '/api/getBottomDensityWines -> 10 least density wines
+
+# Hints:
+   You DON'T have to create any table. Just connect to the database, create the models, recources and schemas needed for the exercise
+   
+# Tips:
+   Sqlalchemy works on top of a python driver for the respective database. For the PostgreSQL you need a python driver to be installed in your python environment. The most popular is the psycopg2 
