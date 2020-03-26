@@ -7,7 +7,7 @@ This is a repository for training purposes
     * https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
     * https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04
 * Run from inside the project folder ```docker-compose up --build```
-* Create an api with the flask microframework
+* Create an api with the flask microframework with the entrypoint being at ```api/main.py```
 * Connect with postgres with the following URI ```postgresql://postgres:postgres@localhost:5430/wine```
 
 ## The endpoints you have to create are the following:
