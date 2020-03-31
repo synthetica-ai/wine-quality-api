@@ -29,13 +29,17 @@ class Qualities(db.Model):
     def __repr__(self):
         return {'fixed_acidity':self.fixed_acidity, 'volatile_acidity':self.volatile_acidity, 'citric_acid':self.citric_acid, 'residual_sugar':self.residual_sugar, 'chlorides':self.chlorides, 'free_sulfur_dioxide':self.free_sulfur_dioxide, 'total_sulfur_dioxide':self.total_sulfur_dioxide, 'density':self.density, 'ph':self.ph, 'sulphates':self.sulphates, 'alcohol':self.alcohol}
 
+    def add_wine(self):
+        db.session.add(self)
+        db.session.commit()
+
     @classmethod
     def find_acidity(cls):
         return cls.query.order_by(cls.fixed_acidity.desc()).first()
 
     @classmethod
     def find_neutral(cls):
-        return cls.query.filter(cls.ph<8).filter(cls.ph>6).all()
+        return cls.query.filter(cls.ph<6,cls.ph>8).all()
 
     @classmethod
     def find_top_alcohol(cls):
@@ -44,3 +48,21 @@ class Qualities(db.Model):
     @classmethod
     def find_bottom_dens(cls):
         return cls.query.order_by(cls.density).limit(10).all()
+
+    @classmethod
+    def find_by_key(cls,fxd_acdt,vlt_acdt):
+        if vlt_acdt!=0:
+            return cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}',cls.volatile_acidity==f"{vlt_acdt}").first()
+        return cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}').all()
+
+    @classmethod
+    def updt(cls,fxd_acdt, vlt_acdt,data):
+        cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}',cls.volatile_acidity==f"{vlt_acdt}").update({**data})
+        db.session.commit()
+        return
+
+    @classmethod
+    def delete_wine(cls,fxd_acdt,vlt_acdt):
+        cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}',cls.volatile_acidity==f"{vlt_acdt}").delete()
+        db.session.commit()
+        return
