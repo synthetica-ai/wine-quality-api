@@ -1,8 +1,9 @@
 from db import db
 
 class Qualities(db.Model):
-    fixed_acidity=db.Column(db.Float, primary_key=True)
-    volatile_acidity=db.Column(db.Float, primary_key=True)
+    id=db.Column(db.Integer, primary_key=True)
+    fixed_acidity=db.Column(db.Float)
+    volatile_acidity=db.Column(db.Float)
     citric_acid=db.Column(db.Float)
     residual_sugar=db.Column(db.Float)
     chlorides=db.Column(db.Float)
@@ -13,24 +14,26 @@ class Qualities(db.Model):
     sulphates=db.Column(db.Float)
     alcohol=db.Column(db.Float)
 
-    def __init__(self, fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, ph, sulphates, alcohol):
-        self.fixed_acidity=fixed_acidity
-        self.volatile_acidity=volatile_acidity
-        self.citric_acid=citric_acid
-        self.residual_sugar=residual_sugar
-        self.chlorides=chlorides
-        self.free_sulfur_dioxide=free_sulfur_dioxide
-        self.total_sulfur_dioxide=total_sulfur_dioxide
-        self.density=density
-        self.ph=ph
-        self.sulphates=sulphates
-        self.alcohol=alcohol
-
     def __repr__(self):
-        return {'fixed_acidity':self.fixed_acidity, 'volatile_acidity':self.volatile_acidity, 'citric_acid':self.citric_acid, 'residual_sugar':self.residual_sugar, 'chlorides':self.chlorides, 'free_sulfur_dioxide':self.free_sulfur_dioxide, 'total_sulfur_dioxide':self.total_sulfur_dioxide, 'density':self.density, 'ph':self.ph, 'sulphates':self.sulphates, 'alcohol':self.alcohol}
+        return f"""id={self.id}
+                fixed_acidity={self.fixed_acidity},
+                volatile_acidity={self.volatile_acidity},
+                citric_acid={self.citric_acid},
+                residual_sugar={self.residual_sugar},
+                chlorides={self.chlorides},
+                free_sulfur_dioxide={self.free_sulfur_dioxide},
+                total_sulfur_dioxide={self.total_sulfur_dioxide},
+                density={self.density},
+                ph={self.ph},
+                sulphates={self.sulphates},
+                alcohol={self.alcohol}"""
 
     def add_wine(self):
         db.session.add(self)
+        db.session.commit()
+
+    def delete_wine(self):
+        db.session.delete(self)
         db.session.commit()
 
     @classmethod
@@ -50,19 +53,17 @@ class Qualities(db.Model):
         return cls.query.order_by(cls.density).limit(10).all()
 
     @classmethod
+    def find_by_id(cls, aa):
+        return cls.query.filter(cls.id==aa).first()
+
+    @classmethod
     def find_by_key(cls,fxd_acdt,vlt_acdt):
         if vlt_acdt!=0:
-            return cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}',cls.volatile_acidity==f"{vlt_acdt}").first()
-        return cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}').all()
+            return cls.query.filter(cls.fixed_acidity==str(fxd_acdt),cls.volatile_acidity==str(vlt_acdt)).first()
+        return cls.query.filter(cls.fixed_acidity==str(fxd_acdt)).all()
 
     @classmethod
-    def updt(cls,fxd_acdt, vlt_acdt,data):
-        cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}',cls.volatile_acidity==f"{vlt_acdt}").update({**data})
-        db.session.commit()
-        return
-
-    @classmethod
-    def delete_wine(cls,fxd_acdt,vlt_acdt):
-        cls.query.filter(cls.fixed_acidity==f'{fxd_acdt}',cls.volatile_acidity==f"{vlt_acdt}").delete()
+    def updt(cls,aa,data):
+        cls.query.filter(cls.id==aa).update({**data})
         db.session.commit()
         return
