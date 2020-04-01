@@ -1,5 +1,6 @@
 
 CREATE TABLE qualities (
+  id serial primary key,
   fixed_acidity real,
   volatile_acidity real,
   citric_acid real,

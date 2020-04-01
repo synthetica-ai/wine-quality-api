@@ -11,11 +11,15 @@ This is a repository for training purposes
 * Connect with postgres with the following URI ```postgresql://postgres:postgres@localhost:5430/wine```
 
 ## The endpoints you have to create are the following:
+# Part #1
     1. '/api/getMaxFixedAcidicity'
     2. '/api/getNeutralWines' -> neutral is the ph range between 6-8
     3. '/api/getTopAlcoholWines' -> 10 most alcoholic wines
     4. '/api/getBottomDensityWines -> 10 least density wines
-
+# Part 2
+    1. '/api/addWine' -> post, insert one or more new wines
+    2. '/api/editWine' -> post, update an existing wine
+    3. '/api/removeWine' -> post, remove a wine
 # Hints:
    You DON'T have to create any table or database. Just run and connect to the database given, create the models, recources and schemas needed for the exercise
    
