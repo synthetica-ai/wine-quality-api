@@ -15,18 +15,18 @@ class Qualities(db.Model):
     alcohol=db.Column(db.Float)
 
     def __repr__(self):
-        return f"""id={self.id}
-                fixed_acidity={self.fixed_acidity},
-                volatile_acidity={self.volatile_acidity},
-                citric_acid={self.citric_acid},
-                residual_sugar={self.residual_sugar},
-                chlorides={self.chlorides},
-                free_sulfur_dioxide={self.free_sulfur_dioxide},
-                total_sulfur_dioxide={self.total_sulfur_dioxide},
-                density={self.density},
-                ph={self.ph},
-                sulphates={self.sulphates},
-                alcohol={self.alcohol}"""
+        return f"""id={self.id},\
+                fixed_acidity={self.fixed_acidity},\
+                volatile_acidity={self.volatile_acidity},\
+                citric_acid={self.citric_acid},\
+                residual_sugar={self.residual_sugar},\
+                chlorides={self.chlorides},\
+                free_sulfur_dioxide={self.free_sulfur_dioxide},\
+                total_sulfur_dioxide={self.total_sulfur_dioxide},\
+                density={self.density},\
+                ph={self.ph},\
+                sulphates={self.sulphates},\
+                alcohol={self.alcohol}""".replace('                ',' ')
 
     def add_wine(self):
         db.session.add(self)
@@ -42,7 +42,7 @@ class Qualities(db.Model):
 
     @classmethod
     def find_neutral(cls):
-        return cls.query.filter(cls.ph<6,cls.ph>8).all()
+        return cls.query.filter(cls.ph>6,cls.ph<8).all()
 
     @classmethod
     def find_top_alcohol(cls):
@@ -59,11 +59,11 @@ class Qualities(db.Model):
     @classmethod
     def find_by_key(cls,fxd_acdt,vlt_acdt):
         if vlt_acdt!=0:
-            return cls.query.filter(cls.fixed_acidity==str(fxd_acdt),cls.volatile_acidity==str(vlt_acdt)).first()
+            return cls.query.filter(cls.fixed_acidity==str(fxd_acdt),cls.volatile_acidity==str(vlt_acdt)).all()
         return cls.query.filter(cls.fixed_acidity==str(fxd_acdt)).all()
 
     @classmethod
-    def updt(cls,aa,data):
-        cls.query.filter(cls.id==aa).update({**data})
+    def update_wine(cls,wine):
+        cls.query.filter(cls.id==wine['id']).update(wine)
         db.session.commit()
         return

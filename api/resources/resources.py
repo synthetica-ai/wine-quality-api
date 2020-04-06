@@ -1,7 +1,16 @@
 from flask_restful import Resource, reqparse
+from flask import request
 
 from models.qualities import Qualities
+from schemas.qualities import QualitiesSchema
 
+schema=QualitiesSchema()
+schema_list=QualitiesSchema(many=True)
+
+class FindById(Resource):
+    def get(self,_id):
+        wine=Qualities.find_by_id(aa=_id)
+        return {'Wine':schema.dump(wine)}
 
 class FindWine(Resource):
     def get(self):
@@ -16,8 +25,8 @@ class FindWine(Resource):
         data=parser.parse_args()
         wine=Qualities.find_by_key(fxd_acdt=data['fixed_acidity'],vlt_acdt=data['volatile_acidity'])
         if wine:
-            return {'Wine': [str(x) for x in wine]}
-        return {'Message':'Wine not found'}
+            return {'Number of wines found': len(wine), "Wines":schema_list.dump(wine)}
+        return {'Message':'Wine not found'}, 404
 
 class MaxFixedAcidicity(Resource):
     def get(self):
@@ -41,107 +50,26 @@ class BottomDensityWines(Resource):
 
 class AddWine(Resource):
     def post(self):
-        parser=reqparse.RequestParser()
-        parser.add_argument('fixed_acidity',
-            type=float,
-            required=True,
-            help="This field cannot be left blank!")
-        parser.add_argument('volatile_acidity',
-            type=float,
-            required=True)
-        parser.add_argument('citric_acid',
-            type=float,
-            required=True)
-        parser.add_argument('residual_sugar',
-            type=float,
-            required=True)
-        parser.add_argument('chlorides',
-            type=float,
-            required=True)
-        parser.add_argument('free_sulfur_dioxide',
-            type=float,
-            required=True)
-        parser.add_argument('total_sulfur_dioxide',
-            type=float,
-            required=True)
-        parser.add_argument('density',
-            type=float,
-            required=True)
-        parser.add_argument('ph',
-            type=float,
-            required=True)
-        parser.add_argument('sulphates',
-            type=float,
-            required=True)
-        parser.add_argument('alcohol',
-            type=float,
-            required=True)
-        data=parser.parse_args()
-        wine=Qualities(**data)
+        wine=schema.load(request.get_json())
         wine.add_wine()
-        return {'Message':'Wine added'}
+        return {'Message':'Wine added'}, 201
 
 class EditWine(Resource):
-    def post(self):
-        parser=reqparse.RequestParser()
-        parser.add_argument('id',
-        type=int,
-        required=True,
-        help="This field cannot be left blank!")
-        parser.add_argument('fixed_acidity',
-            type=float,
-            required=True,
-            help="This field cannot be left blank!")
-        parser.add_argument('volatile_acidity',
-            type=float,
-            required=True)
-        parser.add_argument('citric_acid',
-            type=float,
-            required=True)
-        parser.add_argument('residual_sugar',
-            type=float,
-            required=True)
-        parser.add_argument('chlorides',
-            type=float,
-            required=True)
-        parser.add_argument('free_sulfur_dioxide',
-            type=float,
-            required=True)
-        parser.add_argument('total_sulfur_dioxide',
-            type=float,
-            required=True)
-        parser.add_argument('density',
-            type=float,
-            required=True)
-        parser.add_argument('ph',
-            type=float,
-            required=True)
-        parser.add_argument('sulphates',
-            type=float,
-            required=True)
-        parser.add_argument('alcohol',
-            type=float,
-            required=True)
-        data=parser.parse_args()
-        wine=Qualities.find_by_id(aa=data['id'])
-        if wine:
-            Qualities.updt(aa=data['id'],data=data)
-            return {'Message':'Wine updated'}
-
-        wine=Qualities(**data)
-        wine.add_wine()
-        return {'Message':'Wine added'}
+    def post(self,_id):
+        wine=schema.load(request.get_json())
+        w=Qualities.find_by_id(aa=_id)
+        if w:
+            wine.id=_id
+            Qualities.update_wine(wine=schema.dump(wine))
+            return {'Message':'Wine updated'}, 200
+        else:
+            wine.add_wine()
+            return {'Message':'Wine added'}, 201
 
 class RemoveWine(Resource):
-    def post(self):
-        parser=reqparse.RequestParser()
-        parser.add_argument('id',
-        type=int,
-        required=True,
-        help="This field cannot be left blank!")
-        data=parser.parse_args()
-        wine=Qualities.find_by_id(aa=data['id'])
+    def post(self,_id):
+        wine=Qualities.find_by_id(aa=_id)
         if wine:
             wine.delete_wine()
-            return {'Message':'Wine deleted'}
+            return {'Message':'Wine deleted'},200
         return{'Message':'Wine doesn\'t exist'}, 404
