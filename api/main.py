@@ -23,15 +23,15 @@ api=Api(app)
 
 @app.errorhandler(ValidationError)
 def handle_marshmallow_validation(err):
-    return {'Message':err.mesages}, 400
+    return {'Message':err.messages}, 400
 
 api.add_resource(MaxFixedAcidicity, '/api/getMaxFixedAcidicity')
 api.add_resource(NeutralWines, '/api/getNeutralWines')
 api.add_resource(TopAlcoholWines, '/api/getTopAlcoholWines')
 api.add_resource(BottomDensityWines, '/api/getBottomDensityWines')
 api.add_resource(AddWine, '/api/addWine')
-api.add_resource(EditWine, '/api/editWine/<int:_id>')
-api.add_resource(RemoveWine, '/api/removeWine/<int:_id>')
+api.add_resource(EditWine, '/api/editWine')
+api.add_resource(RemoveWine, '/api/removeWine')
 api.add_resource(FindWine, '/api/findwine')
 api.add_resource(FindById, '/api/findwine/<int:_id>')
 

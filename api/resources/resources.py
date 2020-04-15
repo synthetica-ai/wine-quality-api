@@ -1,6 +1,7 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
 from flask import request
 
+from db import db
 from models.qualities import Qualities
 from schemas.qualities import QualitiesSchema
 
@@ -14,16 +15,8 @@ class FindById(Resource):
 
 class FindWine(Resource):
     def get(self):
-        parser=reqparse.RequestParser()
-        parser.add_argument('fixed_acidity',
-            type=float,
-            required=True,
-            help="This field cannot be left blank!")
-        parser.add_argument('volatile_acidity',
-            type=float,
-            default=0)
-        data=parser.parse_args()
-        wine=Qualities.find_by_key(fxd_acdt=data['fixed_acidity'],vlt_acdt=data['volatile_acidity'])
+        data=schema.load(request.get_json(), partial=True)
+        wine=Qualities.find_by_key(fxd_acdt=data.fixed_acidity,vlt_acdt=data.volatile_acidity)
         if wine:
             return {'Number of wines found': len(wine), "Wines":schema_list.dump(wine)}
         return {'Message':'Wine not found'}, 404
@@ -50,25 +43,23 @@ class BottomDensityWines(Resource):
 
 class AddWine(Resource):
     def post(self):
-        wine=schema.load(request.get_json())
+        wine=schema.load(request.get_json(), partial=True, session=db.session)
         wine.add_wine()
         return {'Message':'Wine added'}, 201
 
 class EditWine(Resource):
-    def post(self,_id):
-        wine=schema.load(request.get_json())
-        w=Qualities.find_by_id(aa=_id)
+    def post(self):
+        wine=schema.load(request.get_json(), partial=True, session=db.session)
+        w=Qualities.find_by_id(aa=wine.id)
         if w:
-            wine.id=_id
             Qualities.update_wine(wine=schema.dump(wine))
             return {'Message':'Wine updated'}, 200
-        else:
-            wine.add_wine()
-            return {'Message':'Wine added'}, 201
+        return {'Message':'Wine doesn\'t exist'}, 404
 
 class RemoveWine(Resource):
-    def post(self,_id):
-        wine=Qualities.find_by_id(aa=_id)
+    def post(self):
+        wine=schema.load(request.get_json(), partial=True, session=db.session)
+        wine=Qualities.find_by_id(aa=wine.id)
         if wine:
             wine.delete_wine()
             return {'Message':'Wine deleted'},200

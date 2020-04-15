@@ -58,9 +58,9 @@ class Qualities(db.Model):
 
     @classmethod
     def find_by_key(cls,fxd_acdt,vlt_acdt):
-        if vlt_acdt!=0:
-            return cls.query.filter(cls.fixed_acidity==str(fxd_acdt),cls.volatile_acidity==str(vlt_acdt)).all()
-        return cls.query.filter(cls.fixed_acidity==str(fxd_acdt)).all()
+        if vlt_acdt is None:
+            return cls.query.filter(cls.fixed_acidity==str(fxd_acdt)).all()
+        return cls.query.filter(cls.fixed_acidity==str(fxd_acdt),cls.volatile_acidity==str(vlt_acdt)).all()
 
     @classmethod
     def update_wine(cls,wine):
