@@ -28,7 +28,7 @@ class getNeutralWines(Resource):
 class getTopAlchohol(Resource):
 
     def get(self):
-        winelist = WineModel.query.order_by(WineModel.alchohol.desc()).limit(10).all()
+        winelist = WineModel.query.order_by(WineModel.alchohol).desc().limit(10).all()
         datalist = []
         for item in winelist:  
             temp = item.json()
