@@ -1,5 +1,5 @@
 # Wine-quality-api
-This is a repository for training purposes
+This is a repository for test/training purposes
 
 ## API - Exercise
 * The goal is to fork the repo in your account and create a pull request from a branch with the format ```api-exercises-<YOUR_NAME>```(https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) *check the git note at the end of the README file*
@@ -42,9 +42,9 @@ This is a repository for training purposes
    In the folder exercises you will find 2 files ```exercises.py``` and ```exercises.js```.
    Inside these files there are standalone exercises for you to solve in python and javascript respectivelly
 
-### *git*
-    In case you don't know how or don't want to use git, skip the first step of the guideline,
-    just download the code and send as an email with your zip file containing the solutions.
-    We strongly suggest to use the git process though.
+### *Git*
+ In case you are not comfortable using git, skip the first step of the guideline,
+ just download the code and send as an email with your zip file containing the solutions.
+ We strongly suggest to use the git process though.
    
  Enjoy!
