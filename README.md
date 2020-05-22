@@ -2,7 +2,7 @@
 This is a repository for training purposes
 
 ## API - Exercise
-* Create branch from master with the format ```api-init-<YOUR_NAME>```
+* Create a branch from master with the format ```api-exercises-<YOUR_NAME>``` and push your code in your remote branch 
 * Install Docker and Docker-Compose following the link below
     * linux (ubuntu):
         * https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
@@ -39,7 +39,14 @@ This is a repository for training purposes
    Sqlalchemy works on top of a python driver for the respective database. For the PostgreSQL you need a python driver to be installed in your python environment. The most popular is the psycopg2 
 
 # Part 3
-   In the folder exercises you will find the file ```exercises.py```.
-   Inside this file there are standalone exercises for you to solve
+   In the folder exercises you will find 2 files ```exercises.py``` and ```exercises.js```.
+   Inside these files there are standalone exercises for you to solve in python and javascript respectivelly
+
+### *git*
+    To download the code locally you either download the zip or clone using git i.e.
+    ```git clone https://github.com/synthetica-ai/wine-quality-api.git```
+    and then push it as explained above. 
+    In case you don't know how or don't want to use git,
+    just download the code and send as an email with your zip file containing the solutions
    
  Enjoy!
