@@ -2,7 +2,7 @@
 This is a repository for training purposes
 
 ## API - Exercise
-* Create a branch from master with the format ```api-exercises-<YOUR_NAME>``` and push your code in your remote branch 
+* The goal is to fork the repo in your account and create a pull request from a branch with the format ```api-exercises-<YOUR_NAME>```(https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) *check the git note at the end of the README file*
 * Install Docker and Docker-Compose following the link below
     * linux (ubuntu):
         * https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
@@ -43,10 +43,8 @@ This is a repository for training purposes
    Inside these files there are standalone exercises for you to solve in python and javascript respectivelly
 
 ### *git*
-    To download the code locally you either download the zip or clone using git i.e.
-    ```git clone https://github.com/synthetica-ai/wine-quality-api.git```
-    and then push it as explained above. 
-    In case you don't know how or don't want to use git,
-    just download the code and send as an email with your zip file containing the solutions
+    In case you don't know how or don't want to use git, skip the first step of the guideline,
+    just download the code and send as an email with your zip file containing the solutions.
+    We strongly suggest to use the git process though.
    
  Enjoy!
