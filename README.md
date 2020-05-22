@@ -40,6 +40,6 @@ This is a repository for training purposes
 
 # Part 3
    In the folder exercises you will find the file ```exercises.py```.
-   Inside this file there is for exercises for you to solve
+   Inside this file there are exercises for you to solve
    
  Enjoy!
