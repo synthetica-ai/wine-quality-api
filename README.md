@@ -42,7 +42,7 @@ This is a repository for test/training purposes
    In the folder exercises you will find 2 files ```exercises.py``` and ```exercises.js```.
    Inside these files there are standalone exercises for you to solve in python and javascript respectivelly
 
-### *Git*
+### * *Git*
  In case you are not comfortable using git, skip the first step of the guideline,
  just download the code and send as an email with your zip file containing the solutions.
  We strongly suggest to use the git process though.
