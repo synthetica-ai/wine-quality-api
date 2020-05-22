@@ -29,7 +29,11 @@ This is a repository for training purposes
     3. '/api/removeWine' -> post, remove a wine
 
 # Hints:
-   You DON'T have to create any table or database. Just run and connect to the database given, create the models, recources and schemas needed for the exercise
+   You DON'T have to create any table or database. Just run and connect to the database given, create:
+   * the models (https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/),
+   * the recources (https://flask-restful.readthedocs.io/en/latest/quickstart.html)
+   
+   needed for the exercise
    
 # Tips:
    Sqlalchemy works on top of a python driver for the respective database. For the PostgreSQL you need a python driver to be installed in your python environment. The most popular is the psycopg2 
