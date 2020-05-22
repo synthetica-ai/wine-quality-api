@@ -1,7 +1,7 @@
 # Wine-quality-api
 This is a repository for training purposes
 
-## Exercise
+## API - Exercise
 * Create branch from master with the format ```api-init-<YOUR_NAME>```
 * Install Docker and Docker-Compose following the link below
     * linux (ubuntu):
@@ -40,6 +40,6 @@ This is a repository for training purposes
 
 # Part 3
    In the folder exercises you will find the file ```exercises.py```.
-   Inside this file there are exercises for you to solve
+   Inside this file there are standalone exercises for you to solve
    
  Enjoy!
