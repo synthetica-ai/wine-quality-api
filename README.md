@@ -12,7 +12,7 @@ This is a repository for training purposes
 * Run from inside the project folder ```docker-compose up --build```
 * Create an api with the flask microframework with the entrypoint being at ```api/main.py```
 * Connect with postgres with the following URI ```postgresql://postgres:postgres@localhost:5430/wine```
-** The easiest way to run docker is a linux environment (preferably ubuntu) 
+->  *The easiest way to run docker is a linux environment (preferably ubuntu)*
 ## The endpoints you have to create are the following:
 
 # Part 1
