@@ -3,14 +3,22 @@ states = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"Cali
 
 # ************************************************* 1 *************************************************
 # create a list with the full name of every state
+full_name_list = list(states.values())
+print(full_name_list[:10])
 
 # ************************************************* 2 *************************************************
 # create a list with the lower case of the states abbreviations
+lower_case_abbr = [ab.lower() for ab in abbr]
+print(lower_case_abbr[:10])
 
 # ************************************************* 3 *************************************************
 # create a list with the full names of the states that their name ends with 'a'
+ending_with_a_states = [state for state in list(states.values()) if state.endswith('a')]
+print(ending_with_a_states[:10])
 
 # ************************************************* 4 *************************************************
 # create a list of dictionaries for every state eg. [{"AL":"Alabama"}, {"AK":"Alaska"}, ...]
+list_of_dictionaries = [{key: states[key]} for key in states]
+print(list_of_dictionaries[:10])
 
 ### NOTE: USE ONLY LIST COPREHENSIONS OR LAMBDA FUNCTIONS!!!
