@@ -4,7 +4,20 @@
 const stringsAndNumbers = ['d', '0', [6], 'c', 8, 4, ['b', [1, 'p']]];
 
 function distinct(array) {
-  // insert code here
+  let numberArray = [];
+  let stringArray = [];
+  array.forEach(function (item, _index) {
+    if (typeof item == 'number'){
+      numberArray.push(item);
+    }
+    if (typeof item == 'string') {
+      stringArray.push(item);
+    }
+  });
+  stringArray.sort();
+  numberArray.sort();
+  console.log('String Array: ', stringArray);
+  console.log('Number Array: ', numberArray);
 }
 
 distinct(stringsAndNumbers);
@@ -15,7 +28,7 @@ distinct(stringsAndNumbers);
 const labels = ['student', 'istuedent', 'studenTTT', '15', 'STUDENT', 'hello', 'world', null];
 
 function removeLabels(array) {
-  // insert code here
+  console.log(array.filter(function (el) {return typeof el == 'string' && el.toLowerCase().includes('student')}));
 }
 
 removeLabels(labels);
@@ -32,7 +45,12 @@ const students = [
 ];
 
 function transformNotes(array) {
-  // insert code here
+  array.forEach(function (item, _index) {
+    let topNote = ('notes' in item && item['notes'].length > 0) ? Math.max(...item['notes']) : 0;
+    delete item['notes'];
+    item['topNote'] = topNote;
+  });
+  console.log(array);
 }
 
 transformNotes(students);
@@ -44,7 +62,12 @@ transformNotes(students);
 const word = 'student';
 
 function groupLetters(string) {
-  // insert code here
+  let counter  = string.split('').reduce((total, letter) => {
+      total[letter] ? total[letter]++ : total[letter] = 1;
+      return total;
+    }, {});
+
+  console.log(counter);
 }
 
 groupLetters(word);
@@ -61,7 +84,7 @@ const dates = [
 ];
 
 function findLongestStreak(array) {
-  // insert code here
+
 }
 
 findLongestStreak(dates);
