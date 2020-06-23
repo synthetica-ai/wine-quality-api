@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from models.wines import WineModel
+from models.WineModel import WineModel  
 
 class getMaxFixedAcidicity(Resource):
 
@@ -25,7 +25,7 @@ class getNeutralWines(Resource):
             return{'message' : 'No results'}
         return datalist  
 
-class getTopAlchohol(Resource):
+class getTopAlchoholWines(Resource):
 
     def get(self):
         winelist = WineModel.query.order_by(WineModel.alchohol).desc().limit(10).all()
